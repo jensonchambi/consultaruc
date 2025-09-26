@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta RUC SUNAT</title>
+  <script>
+    window.onload = function() {
+      // Obtener el RUC desde la URL
+      const params = new URLSearchParams(window.location.search);
+      const ruc = params.get("ruc");
+
+      if (ruc) {
+        // Insertar el valor del RUC en el formulario oculto
+        document.getElementById("nroRuc").value = ruc;
+        // Enviar el formulario automáticamente
+        document.getElementById("consultaForm").submit();
+      } else {
+        document.body.innerHTML = "<h3>Falta el parámetro 'ruc' en la URL.</h3>";
+      }
+    }
+  </script>
+</head>
+<body>
+  <form id="consultaForm" action="https://e-consulta.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias" method="post">
+    <input type="hidden" name="nroRuc" id="nroRuc" value="">
+  </form>
+</body>
+</html>
